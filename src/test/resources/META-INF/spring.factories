@@ -1,0 +1,2 @@
+org.springframework.test.context.ContextCustomizerFactory = \
+    md.esempla.webflux.config.SqlTestContainersSpringContextCustomizerFactory

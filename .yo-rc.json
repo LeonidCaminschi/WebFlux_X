@@ -1,0 +1,33 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "authenticationType": "jwt",
+    "baseName": "webFlux",
+    "buildTool": "maven",
+    "cacheProvider": null,
+    "clientFramework": "angular",
+    "clientTestFrameworks": [],
+    "clientTheme": "none",
+    "creationTimestamp": 1744277402056,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "enableHibernateCache": null,
+    "enableTranslation": true,
+    "entities": [],
+    "feignClient": null,
+    "jhipsterVersion": "8.9.0",
+    "jwtSecretKey": "YmI2MGU0YzQ1OTFlZjFkNmJkZTJkNDNmMWZhZjkyMDQ2MmZlMGM3MmMzM2IyNzIwNTNlZGEyMmQ5NDRlNjY0ZjhhNmE1NmVlNDEzYzJiYTcwMTk3NGU0ODAxZjFlMzdiM2UyMDU2ODVmM2NhZTUyNGVjNzY0MTdmYWY2MGMxYTc=",
+    "languages": ["ro", "en", "ru"],
+    "microfrontend": null,
+    "microfrontends": [],
+    "nativeLanguage": "ro",
+    "packageName": "md.esempla.webflux",
+    "prodDatabaseType": "postgresql",
+    "reactive": true,
+    "serverPort": null,
+    "serviceDiscoveryType": null,
+    "syncUserWithIdp": null,
+    "testFrameworks": [],
+    "withAdminUi": true
+  }
+}
