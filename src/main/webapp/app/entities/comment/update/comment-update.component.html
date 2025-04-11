@@ -1,0 +1,88 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-comment-heading" data-cy="CommentCreateUpdateHeading" jhiTranslate="webFluxApp.comment.home.createOrEditLabel">
+        Creeare sau editare Comment
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="webFluxApp.comment.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let contentRef = editForm.get('content')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_content" jhiTranslate="webFluxApp.comment.content">Content</label>
+          <input type="text" class="form-control" name="content" id="field_content" data-cy="content" formControlName="content" />
+          @if (contentRef.invalid && (contentRef.dirty || contentRef.touched)) {
+            <div>
+              @if (editForm.get('content')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Acest câmp este necesar.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let createTimeRef = editForm.get('createTime')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_createTime" jhiTranslate="webFluxApp.comment.createTime">Create Time</label>
+          <div class="d-flex">
+            <input
+              id="field_createTime"
+              data-cy="createTime"
+              type="datetime-local"
+              class="form-control"
+              name="createTime"
+              formControlName="createTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          @if (createTimeRef.invalid && (createTimeRef.dirty || createTimeRef.touched)) {
+            <div>
+              @if (editForm.get('createTime')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Acest câmp este necesar.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('createTime')?.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >Acest câmp trebuie să conțină data și ora.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_post" jhiTranslate="webFluxApp.comment.post">Post</label>
+          <select class="form-control" id="field_post" data-cy="post" name="post" formControlName="post" [compareWith]="comparePost">
+            <option [ngValue]="null"></option>
+            @for (postOption of postsSharedCollection; track $index) {
+              <option [ngValue]="postOption">{{ postOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Anulare</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvare</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

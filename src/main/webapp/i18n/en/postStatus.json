@@ -1,0 +1,25 @@
+{
+  "webFluxApp": {
+    "postStatus": {
+      "home": {
+        "title": "Post Statuses",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Post Status",
+        "createOrEditLabel": "Create or edit a Post Status",
+        "notFound": "No Post Statuses found"
+      },
+      "created": "A new Post Status is created with identifier {{ param }}",
+      "updated": "A Post Status is updated with identifier {{ param }}",
+      "deleted": "A Post Status is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Post Status {{ id }}?"
+      },
+      "detail": {
+        "title": "Post Status"
+      },
+      "id": "ID",
+      "status": "Status",
+      "post": "Post"
+    }
+  }
+}

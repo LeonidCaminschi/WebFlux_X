@@ -1,0 +1,25 @@
+{
+  "webFluxApp": {
+    "postStatus": {
+      "home": {
+        "title": "Post Statuses",
+        "refreshListLabel": "Обновить список",
+        "createLabel": "Создать новый Post Status",
+        "createOrEditLabel": "Создать или отредактировать Post Status",
+        "notFound": "Post Statuses не найдено"
+      },
+      "created": "Новый Post Status создан с идентификатором {{ param }}",
+      "updated": "Post Status обновлен с идентификатором {{ param }}",
+      "deleted": "Post Status удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Post Status {{ id }}?"
+      },
+      "detail": {
+        "title": "Post Status"
+      },
+      "id": "ID",
+      "status": "Status",
+      "post": "Post"
+    }
+  }
+}

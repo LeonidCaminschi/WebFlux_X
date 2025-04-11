@@ -1,0 +1,25 @@
+{
+  "webFluxApp": {
+    "postStatus": {
+      "home": {
+        "title": "Post Statuses",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Creeare o nouă entitate Post Status",
+        "createOrEditLabel": "Creeare sau editare Post Status",
+        "notFound": "No Post Statuses found"
+      },
+      "created": "A fost creată o nouă entitate Post Status cu identificatorul {{ param }}",
+      "updated": "Post Status cu identificatorul {{ param }} a fost actualizată",
+      "deleted": "Post Status cu identificatorul {{ param }} a fost ștearsă",
+      "delete": {
+        "question": "Sunteți sigur că doriți să ștergeți Post Status {{ id }}?"
+      },
+      "detail": {
+        "title": "Post Status"
+      },
+      "id": "ID",
+      "status": "Status",
+      "post": "Post"
+    }
+  }
+}

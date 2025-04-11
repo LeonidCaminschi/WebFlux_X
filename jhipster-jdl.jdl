@@ -23,8 +23,8 @@ relationship OneToMany {
 }
 
 use serviceClass for Post, Comment
-//use mapstruct for User, Post, Comment
-//use dto for User, Post, Comment
-use filter for Post, Comment
-use pagination for Post
-use infinite_scroll for Comment
+
+filter Post, Comment
+
+paginate Post with pagination
+paginate Comment with infinite-scroll

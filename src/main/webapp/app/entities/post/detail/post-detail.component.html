@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (post(); as postRef) {
+      <div>
+        <h2 data-cy="postDetailsHeading"><span jhiTranslate="webFluxApp.post.detail.title">Post</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ postRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="webFluxApp.post.title">Title</span></dt>
+          <dd>
+            <span>{{ postRef.title }}</span>
+          </dd>
+          <dt><span jhiTranslate="webFluxApp.post.content">Content</span></dt>
+          <dd>
+            <span>{{ postRef.content }}</span>
+          </dd>
+          <dt><span jhiTranslate="webFluxApp.post.createTime">Create Time</span></dt>
+          <dd>
+            <span>{{ postRef.createTime | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="webFluxApp.post.updateTime">Update Time</span></dt>
+          <dd>
+            <span>{{ postRef.updateTime | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="webFluxApp.post.postStatus">Post Status</span></dt>
+          <dd>
+            @if (post()!.postStatus) {
+              <div>
+                <a [routerLink]="['/post-status', post()!.postStatus?.id, 'view']">{{ postRef.postStatus?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Înapoi</span>
+        </button>
+
+        <button type="button" [routerLink]="['/post', postRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editare</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

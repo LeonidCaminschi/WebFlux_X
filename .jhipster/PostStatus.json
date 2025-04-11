@@ -1,0 +1,16 @@
+{
+  "annotations": {
+    "changelogDate": "20250411082617"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "status",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "PostStatus",
+  "relationships": [],
+  "searchEngine": "no"
+}

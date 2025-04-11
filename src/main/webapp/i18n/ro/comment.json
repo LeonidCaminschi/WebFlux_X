@@ -1,0 +1,26 @@
+{
+  "webFluxApp": {
+    "comment": {
+      "home": {
+        "title": "Comments",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Creeare o nouă entitate Comment",
+        "createOrEditLabel": "Creeare sau editare Comment",
+        "notFound": "No Comments found"
+      },
+      "created": "A fost creată o nouă entitate Comment cu identificatorul {{ param }}",
+      "updated": "Comment cu identificatorul {{ param }} a fost actualizată",
+      "deleted": "Comment cu identificatorul {{ param }} a fost ștearsă",
+      "delete": {
+        "question": "Sunteți sigur că doriți să ștergeți Comment {{ id }}?"
+      },
+      "detail": {
+        "title": "Comment"
+      },
+      "id": "ID",
+      "content": "Content",
+      "createTime": "Create Time",
+      "post": "Post"
+    }
+  }
+}
