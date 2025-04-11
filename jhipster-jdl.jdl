@@ -27,8 +27,8 @@ entity Comment {
 }
 
 relationship OneToOne {
-  UserStatus to XUser{userStatus}
-  PostStatus to Post{postStatus}
+  XUser{userStatus} to UserStatus
+  Post{postStatus} to PostStatus
 }
 
 relationship OneToMany {
@@ -37,9 +37,9 @@ relationship OneToMany {
   Post{comment} to Comment
 }
 
-use serviceClass for Post, Comment
+//use serviceClass for Post, Comment
 //use mapstruct for User, Post, Comment
 //use dto for User, Post, Comment
-use filter for Post, Comment
-use pagination for Post
-use infinite_scroll for Comment
+//use filter for Post, Comment
+//use pagination for Post
+//use infinite_scroll for Comment
