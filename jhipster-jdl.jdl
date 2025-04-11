@@ -1,17 +1,5 @@
-entity UserStatus {
-  status String required
-}
-
 entity PostStatus {
   status String required
-}
-
-entity XUser {
-  username String required unique
-  password String required
-  lastName String required
-  firstName String required
-  email String required
 }
 
 entity Post {
@@ -27,19 +15,16 @@ entity Comment {
 }
 
 relationship OneToOne {
-  XUser{userStatus} to UserStatus
   Post{postStatus} to PostStatus
 }
 
 relationship OneToMany {
-  XUser{post} to Post
-  XUser{comment} to Comment
   Post{comment} to Comment
 }
 
-//use serviceClass for Post, Comment
+use serviceClass for Post, Comment
 //use mapstruct for User, Post, Comment
 //use dto for User, Post, Comment
-//use filter for Post, Comment
-//use pagination for Post
-//use infinite_scroll for Comment
+use filter for Post, Comment
+use pagination for Post
+use infinite_scroll for Comment
