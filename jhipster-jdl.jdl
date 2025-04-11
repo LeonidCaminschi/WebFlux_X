@@ -1,0 +1,45 @@
+entity UserStatus {
+  status String required
+}
+
+entity PostStatus {
+  status String required
+}
+
+entity XUser {
+  username String required unique
+  password String required
+  lastName String required
+  firstName String required
+  email String required
+}
+
+entity Post {
+  title String required
+  content String
+  createTime ZonedDateTime required
+  updateTime ZonedDateTime required
+}
+
+entity Comment {
+  content String required
+  createTime ZonedDateTime required
+}
+
+relationship OneToOne {
+  UserStatus to XUser{userStatus}
+  PostStatus to Post{postStatus}
+}
+
+relationship OneToMany {
+  XUser{post} to Post
+  XUser{comment} to Comment
+  Post{comment} to Comment
+}
+
+use serviceClass for Post, Comment
+//use mapstruct for User, Post, Comment
+//use dto for User, Post, Comment
+use filter for Post, Comment
+use pagination for Post
+use infinite_scroll for Comment

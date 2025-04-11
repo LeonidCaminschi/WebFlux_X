@@ -33,7 +33,7 @@ spring:
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev, faker
-    url: jdbc:postgresql://localhost:5432/webFlux
+    url: jdbc:postgresql://localhost:5432/webflux
   mail:
     host: localhost
     port: 25
@@ -42,9 +42,9 @@ spring:
   messages:
     cache-duration: PT1S # 1 second, see the ISO 8601 standard
   r2dbc:
-    url: r2dbc:postgresql://localhost:5432/webFlux
-    username: webFlux
-    password:
+    url: r2dbc:postgresql://localhost:5432/webflux
+    username: postgres
+    password: admin
   thymeleaf:
     cache: false
 
