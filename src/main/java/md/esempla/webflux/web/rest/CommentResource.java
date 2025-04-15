@@ -119,49 +119,6 @@ public class CommentResource {
     }
 
     /**
-     * {@code PATCH  /comments/:id} : Partial updates given fields of an existing comment, field will ignore if it is null
-     *
-     * @param id the id of the comment to save.
-     * @param comment the comment to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated comment,
-     * or with status {@code 400 (Bad Request)} if the comment is not valid,
-     * or with status {@code 404 (Not Found)} if the comment is not found,
-     * or with status {@code 500 (Internal Server Error)} if the comment couldn't be updated.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
-    @PatchMapping(value = "/{id}", consumes = { "application/json", "application/merge-patch+json" })
-    public Mono<ResponseEntity<Comment>> partialUpdateComment(
-        @PathVariable(value = "id", required = false) final Long id,
-        @NotNull @RequestBody Comment comment
-    ) throws URISyntaxException {
-        LOG.debug("REST request to partial update Comment partially : {}, {}", id, comment);
-        if (comment.getId() == null) {
-            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
-        }
-        if (!Objects.equals(id, comment.getId())) {
-            throw new BadRequestAlertException("Invalid ID", ENTITY_NAME, "idinvalid");
-        }
-
-        return commentRepository
-            .existsById(id)
-            .flatMap(exists -> {
-                if (!exists) {
-                    return Mono.error(new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound"));
-                }
-
-                Mono<Comment> result = commentService.partialUpdate(comment);
-
-                return result
-                    .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND)))
-                    .map(res ->
-                        ResponseEntity.ok()
-                            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, res.getId().toString()))
-                            .body(res)
-                    );
-            });
-    }
-
-    /**
      * {@code GET  /comments} : get all the comments.
      *
      * @param pageable the pagination information.

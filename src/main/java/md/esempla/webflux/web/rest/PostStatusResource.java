@@ -112,58 +112,6 @@ public class PostStatusResource {
     }
 
     /**
-     * {@code PATCH  /post-statuses/:id} : Partial updates given fields of an existing postStatus, field will ignore if it is null
-     *
-     * @param id the id of the postStatus to save.
-     * @param postStatus the postStatus to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated postStatus,
-     * or with status {@code 400 (Bad Request)} if the postStatus is not valid,
-     * or with status {@code 404 (Not Found)} if the postStatus is not found,
-     * or with status {@code 500 (Internal Server Error)} if the postStatus couldn't be updated.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
-    @PatchMapping(value = "/{id}", consumes = { "application/json", "application/merge-patch+json" })
-    public Mono<ResponseEntity<PostStatus>> partialUpdatePostStatus(
-        @PathVariable(value = "id", required = false) final Long id,
-        @NotNull @RequestBody PostStatus postStatus
-    ) throws URISyntaxException {
-        LOG.debug("REST request to partial update PostStatus partially : {}, {}", id, postStatus);
-        if (postStatus.getId() == null) {
-            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
-        }
-        if (!Objects.equals(id, postStatus.getId())) {
-            throw new BadRequestAlertException("Invalid ID", ENTITY_NAME, "idinvalid");
-        }
-
-        return postStatusRepository
-            .existsById(id)
-            .flatMap(exists -> {
-                if (!exists) {
-                    return Mono.error(new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound"));
-                }
-
-                Mono<PostStatus> result = postStatusRepository
-                    .findById(postStatus.getId())
-                    .map(existingPostStatus -> {
-                        if (postStatus.getStatus() != null) {
-                            existingPostStatus.setStatus(postStatus.getStatus());
-                        }
-
-                        return existingPostStatus;
-                    })
-                    .flatMap(postStatusRepository::save);
-
-                return result
-                    .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND)))
-                    .map(res ->
-                        ResponseEntity.ok()
-                            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, res.getId().toString()))
-                            .body(res)
-                    );
-            });
-    }
-
-    /**
      * {@code GET  /post-statuses} : get all the postStatuses.
      *
      * @param filter the filter of the request.

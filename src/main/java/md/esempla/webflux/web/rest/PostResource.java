@@ -119,49 +119,6 @@ public class PostResource {
     }
 
     /**
-     * {@code PATCH  /posts/:id} : Partial updates given fields of an existing post, field will ignore if it is null
-     *
-     * @param id the id of the post to save.
-     * @param post the post to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated post,
-     * or with status {@code 400 (Bad Request)} if the post is not valid,
-     * or with status {@code 404 (Not Found)} if the post is not found,
-     * or with status {@code 500 (Internal Server Error)} if the post couldn't be updated.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
-    @PatchMapping(value = "/{id}", consumes = { "application/json", "application/merge-patch+json" })
-    public Mono<ResponseEntity<Post>> partialUpdatePost(
-        @PathVariable(value = "id", required = false) final Long id,
-        @NotNull @RequestBody Post post
-    ) throws URISyntaxException {
-        LOG.debug("REST request to partial update Post partially : {}, {}", id, post);
-        if (post.getId() == null) {
-            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
-        }
-        if (!Objects.equals(id, post.getId())) {
-            throw new BadRequestAlertException("Invalid ID", ENTITY_NAME, "idinvalid");
-        }
-
-        return postRepository
-            .existsById(id)
-            .flatMap(exists -> {
-                if (!exists) {
-                    return Mono.error(new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound"));
-                }
-
-                Mono<Post> result = postService.partialUpdate(post);
-
-                return result
-                    .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND)))
-                    .map(res ->
-                        ResponseEntity.ok()
-                            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, res.getId().toString()))
-                            .body(res)
-                    );
-            });
-    }
-
-    /**
      * {@code GET  /posts} : get all the posts.
      *
      * @param pageable the pagination information.
