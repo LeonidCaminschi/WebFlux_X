@@ -51,7 +51,6 @@
                   separator=";"
                   tableName="post"
                   usePreparedStatements="true">
-            <column name="id" type="numeric"/>
             <column name="title" type="string"/>
             <column name="content" type="string"/>
             <column name="create_time" type="date"/>

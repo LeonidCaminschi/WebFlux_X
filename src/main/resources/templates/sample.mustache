@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Posts List</title>
+</head>
+<body>
+    <h1>All Posts</h1>
+    {{#posts}}
+    <div class="post">
+        <h2><strong>Title:</strong> {{title}}</h2>
+        <p><strong>Content:</strong> {{content}}</p>
+        <p><strong>Created:</strong> {{createTime}}</p>
+        <p><strong>Updated:</strong> {{updateTime}}</p>
+        {{#postStatus}}
+        <p><strong>Status:</strong> {{status}}</p>
+        {{/postStatus}}
+        {{#comments}}
+        <div class="comment">
+            <p>{{content}}</p>
+            <small>{{createTime}}</small>
+        </div>
+        {{/comments}}
+    </div>
+    <hr/>
+    {{/posts}}
+</body>
+</html>

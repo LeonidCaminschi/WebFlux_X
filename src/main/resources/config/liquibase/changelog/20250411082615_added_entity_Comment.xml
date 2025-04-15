@@ -44,7 +44,6 @@
                   separator=";"
                   tableName="comment"
                   usePreparedStatements="true">
-            <column name="id" type="numeric"/>
             <column name="content" type="string"/>
             <column name="create_time" type="date"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
