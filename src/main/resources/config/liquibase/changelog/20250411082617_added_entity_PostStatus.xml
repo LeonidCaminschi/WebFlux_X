@@ -11,7 +11,7 @@
     -->
     <changeSet id="20250411082617-1" author="jhipster">
         <createTable tableName="post_status">
-            <column name="id" type="bigint" autoIncrement="true" startWith="1500">
+            <column name="id" type="bigserial" autoIncrement="true" startWith="1">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="status" type="varchar(255)">

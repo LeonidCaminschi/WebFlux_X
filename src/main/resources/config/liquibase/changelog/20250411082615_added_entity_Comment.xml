@@ -11,7 +11,7 @@
     -->
     <changeSet id="20250411082615-1" author="jhipster">
         <createTable tableName="comment">
-            <column name="id" type="bigint" autoIncrement="true" startWith="1500">
+            <column name="id" type="bigserial" autoIncrement="true" startWith="1">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="content" type="varchar(255)">
